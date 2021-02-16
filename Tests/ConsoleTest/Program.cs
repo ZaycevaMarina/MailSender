@@ -1,5 +1,4 @@
 ﻿using System;
-// Пространства имён, содержащие нужные нам инструменты
 using System.Net;
 using System.Net.Mail;
 namespace ConsoleTest
