@@ -47,11 +47,11 @@
                         </StackPanel.Resources>
                         <WrapPanel>
                             <TextBlock Text="Email отправителя"></TextBlock>
-                            <TextBox x:Name="tbEmailSender" Text="mnovachuk@yandex.ru"></TextBox>
+                            <TextBox x:Name="tbEmailSender"></TextBox>
                         </WrapPanel>
                         <WrapPanel>
                             <TextBlock Text="Email получателя"></TextBlock>
-                            <TextBox x:Name="tbEmailReceiver" Text="mari_minflash@yahoo.com"></TextBox>
+                            <TextBox x:Name="tbEmailReceiver"></TextBox>
                         </WrapPanel>
                         <WrapPanel>
                             <TextBlock Text="Smtp сервер"></TextBlock>
@@ -64,7 +64,7 @@
                         <CheckBox x:Name="chbSsl" Margin="150,10,0,10" Width="Auto" Content="Использование SSL" IsChecked="True" Checked="chbSsl_Checked"></CheckBox>
                         <WrapPanel>
                             <TextBlock Text="Имя отправителя"></TextBlock>
-                            <TextBox x:Name="tbName" Text="mnovachuk@yandex.ru"></TextBox>
+                            <TextBox x:Name="tbName" ></TextBox>
                         </WrapPanel>
                         <WrapPanel>
                             <TextBlock Text="Пароль отправителя"></TextBlock>
