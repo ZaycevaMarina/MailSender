@@ -7,8 +7,8 @@ namespace ConsoleTest
     {
         static void Main(string[] args)
         {
-            var from = new MailAddress("mnovachuk@yandex.ru");
-            var to = new MailAddress("mari_minflash@yahoo.com");
+            var from = new MailAddress("_@yandex.ru");
+            var to = new MailAddress("_@yahoo.com");
 
             var message = new MailMessage(from, to);
             message.Subject = "Заголовок";
@@ -19,9 +19,9 @@ namespace ConsoleTest
 
             client.Credentials = new NetworkCredential
             {
-                UserName = "mnovachuk@yandex.ru",//"mari_minflash@yahoo.com",//
+                UserName = "_@yandex.ru",
                 //SecurePassword = PasswordEdit.SecurePassword
-                Password = "RiWa18,02"
+                Password = "="
             };
 
             try
