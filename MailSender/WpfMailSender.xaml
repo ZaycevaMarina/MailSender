@@ -222,9 +222,9 @@
                     </Grid.RowDefinitions>
                     <GroupBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Header="Письма">
                         <ListBox>
-                            <ListBoxItem>Письмо 1</ListBoxItem>
-                            <ListBoxItem>Письмо 2</ListBoxItem>
-                            <ListBoxItem>Письмо 3</ListBoxItem>
+                            <ListBoxItem Content="Письмо 1"></ListBoxItem>
+                            <ListBoxItem Content="Письмо 2"></ListBoxItem>
+                            <ListBoxItem Content="Письмо 3"></ListBoxItem>
                         </ListBox>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Grid.Row="0" Header="Тема">
@@ -252,12 +252,16 @@
                                     <Style TargetType="Button">
                                         <Setter Property="Margin" Value="0,3"/>
                                         <Setter Property="Background" Value="White"/>
-                                        <Setter Property="Width" Value="20"/>
+                                        <Setter Property="Width" Value="150"/>
                                         <Setter Property="Height" Value="30"/>
                                     </Style>
                                 </UniformGrid.Resources>
-                                <Button ToolTip="Запланировать" fa:Awesome.Content="Solid_Clock" Foreground="Gray"/>
-                                <Button ToolTip="Отправить" fa:Awesome.Content="Solid_Clock" Foreground="DarkBlue"/>
+                                <Button ToolTip="Запланировать">
+                                    <fa:ImageAwesome Icon="Solid_Clock" Foreground="Gray" Height="20"/>
+                                </Button>
+                                <Button ToolTip="Отправить">
+                                    <fa:ImageAwesome Icon="Solid_Clock" Foreground="DarkBlue" Height="20"/>
+                                </Button> 
                             </UniformGrid>
                         </StackPanel>
                     </GroupBox>
