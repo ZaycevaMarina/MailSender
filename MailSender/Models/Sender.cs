@@ -6,5 +6,7 @@ namespace MailSender.Models
 {
     class Sender:User
     {
+        public int Id { get; set; }
+        public string Comment { get; set; }
     }
 }
