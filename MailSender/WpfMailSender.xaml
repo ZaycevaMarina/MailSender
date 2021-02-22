@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:local="clr-namespace:MailSender"
         mc:Ignorable="d"
         Title="Почтовый рассыльщик" Height="650" Width="800" MinHeight="600" MinWidth="700">
@@ -32,7 +33,7 @@
         </StatusBar>
 
         <TabControl Height="550">
-            <TabItem Header="Рассыльщик. Урок 1">
+            <!--<TabItem Header="Рассыльщик. Урок 1">
                 <StackPanel>
                     <StackPanel.Resources>
                         <Style TargetType="TextBlock">
@@ -81,7 +82,7 @@
                     </WrapPanel>
                     <Button x:Name="btSendLetter" Click="btSendLetter_Click" Content="Отправить" Margin="150, 0, 450,10" Height="20"></Button>
                 </StackPanel>
-            </TabItem>
+            </TabItem>-->
 
             <TabItem Header="Отправитель">
                 <StackPanel>
@@ -127,19 +128,19 @@
                             <Viewbox Width="30" Height="30">
                                 <Grid Width="30" Height="30">
                                     <Ellipse Fill="Green" Stroke="White"/>
-                                    <TextBlock MouseDown="AddEmailSender" Text="+" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
+                                    <TextBlock MouseDown="AddEmailSender" Text="+" ToolTip="Добавить" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
                                 </Grid>
                             </Viewbox>
                             <Viewbox Width="30" Height="30">
                                 <Grid Width="30" Height="30">
                                     <Rectangle Fill="Yellow" Stroke="White"/>
-                                    <TextBlock MouseDown="EditEmailsSender" Text="..." HorizontalAlignment="Center" Foreground="OrangeRed" TextAlignment="Center" Height="20" />
+                                    <TextBlock MouseDown="EditEmailsSender" Text="..." ToolTip="Редактировать" HorizontalAlignment="Center" Foreground="OrangeRed" TextAlignment="Center" Height="20" />
                                 </Grid>
                             </Viewbox>
                             <Viewbox Width="30" Height="30">
                                 <Grid Width="30" Height="30">
                                     <Ellipse Fill="Red" Stroke="White"/>
-                                    <TextBlock MouseDown="DeleteEmailSender" Text="-" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
+                                    <TextBlock MouseDown="DeleteEmailSender" Text="-" ToolTip="Удалить" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
                                 </Grid>
                             </Viewbox>
                         </UniformGrid>
@@ -151,19 +152,19 @@
                             <Viewbox Width="30" Height="30">
                                 <Grid Width="30" Height="30">
                                     <Ellipse Fill="Green" Stroke="White"/>
-                                    <TextBlock MouseDown="AddSmtpServer" Text="+" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
+                                    <TextBlock MouseDown="AddSmtpServer" Text="+" ToolTip="Добавить" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
                                 </Grid>
                             </Viewbox>
                             <Viewbox Width="30" Height="30">
                                 <Grid Width="30" Height="30">
                                     <Rectangle Fill="Yellow" Stroke="White"/>
-                                    <TextBlock MouseDown="EditSmtpServers" Text="..." HorizontalAlignment="Center" Foreground="OrangeRed" TextAlignment="Center" Height="20" />
+                                    <TextBlock MouseDown="EditSmtpServers" Text="..." ToolTip="Редактировать" HorizontalAlignment="Center" Foreground="OrangeRed" TextAlignment="Center" Height="20" />
                                 </Grid>
                             </Viewbox>
                             <Viewbox Width="30" Height="30">
                                 <Grid Width="30" Height="30">
                                     <Ellipse Fill="Red" Stroke="White"/>
-                                    <TextBlock MouseDown="DeleteSmtpServer" Text="-" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
+                                    <TextBlock MouseDown="DeleteSmtpServer" Text="-" ToolTip="Удалить" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
                                 </Grid>
                             </Viewbox>
                         </UniformGrid>
@@ -175,19 +176,19 @@
                             <Viewbox Width="30" Height="30">
                                 <Grid Width="30" Height="30">
                                     <Ellipse Fill="Green" Stroke="White"/>
-                                    <TextBlock MouseDown="AddPort" Text="+" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
+                                    <TextBlock MouseDown="AddPort" Text="+" ToolTip="Добавить" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
                                 </Grid>
                             </Viewbox>
                             <Viewbox Width="30" Height="30">
                                 <Grid Width="30" Height="30">
                                     <Rectangle Fill="Yellow" Stroke="White"/>
-                                    <TextBlock MouseDown="EditPorts" Text="..." HorizontalAlignment="Center" Foreground="OrangeRed" TextAlignment="Center" VerticalAlignment="Center" Height="20" />
+                                    <TextBlock MouseDown="EditPorts" Text="..." ToolTip="Редактировать" HorizontalAlignment="Center" Foreground="OrangeRed" TextAlignment="Center" VerticalAlignment="Center" Height="20" />
                                 </Grid>
                             </Viewbox>
                             <Viewbox Width="30" Height="30">
                                 <Grid Width="30" Height="30">
                                     <Ellipse Fill="Red" Stroke="White"/>
-                                    <TextBlock MouseDown="DeletePort" Text="-" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" Height="20" />
+                                    <TextBlock MouseDown="DeletePort" Text="-" ToolTip="Удалить" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" Height="20" />
                                 </Grid>
                             </Viewbox>
                         </UniformGrid>
@@ -195,35 +196,126 @@
                 </StackPanel>
             </TabItem>
             <TabItem Header="Список получателей">
-                <GroupBox Grid.Column="1" Header="Получатели">
-                    <Grid>
+                <GroupBox Grid.Column="1" Header="Получатели" VerticalAlignment="Top">
+                    <Grid VerticalAlignment="Top">
                         <DataGrid x:Name="dgReceivers" AutoGenerateColumns="False" EnableRowVirtualization="True" HorizontalAlignment="Left" IsReadOnly="True" Width="Auto">
                             <DataGrid.Columns>
                                 <DataGridTextColumn x:Name="dgtcId" Header="Id" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn x:Name="dgtcEmail" Header="Email" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn x:Name="dgtcName" Header="Имя" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn x:Name="dgtcTypeOfDelivery" Header="Тип рассылки" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn x:Name="dgtcComment" Header="Комментарий" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn x:Name="dgtcComment" Header="Комментарий" IsReadOnly="True" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
                 </GroupBox>
             </TabItem>
             <TabItem Header="Редактор писем">
-                <GroupBox Grid.Column="1" Header="Письма">
-                    <Grid>
-                        <DataGrid x:Name="dgLetters" AutoGenerateColumns="False" EnableRowVirtualization="True" HorizontalAlignment="Left" IsReadOnly="True" Width="Auto" >
-                            <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="dgtcIdLetter" Header="Id" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn x:Name="dgtcTypeOfDeliveryLetter" Header="Тип рассылки" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn x:Name="dgtcText" Header="Текст" IsReadOnly="True" Width="Auto"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
-                    </Grid>
-                </GroupBox>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" MinWidth="120"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <GroupBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Header="Письма">
+                        <ListBox>
+                            <ListBoxItem>Письмо 1</ListBoxItem>
+                            <ListBoxItem>Письмо 2</ListBoxItem>
+                            <ListBoxItem>Письмо 3</ListBoxItem>
+                        </ListBox>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Grid.Row="0" Header="Тема">
+                        <TextBox/>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Grid.Row="1" Header="Текст">
+                        <TextBox AcceptsReturn="True" AcceptsTab="True"/>
+                    </GroupBox>
+                </Grid>
             </TabItem>
-            <TabItem Header="Рассписание"/>
-            <TabItem Header="Статистика"/>
+            <TabItem Header="Рассписание">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>                    
+                    <GroupBox Grid.Column="0" Header="Время">
+                        <StackPanel>
+                            <TextBlock Text="Дата" HorizontalAlignment="Center"/>
+                            <Calendar SelectedDate="2021-02-22"/>
+                            <TextBlock Text="Время" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                            <TextBox Margin="10,0" HorizontalContentAlignment="Center"/>
+                            <UniformGrid Columns="1" Margin="5">
+                                <UniformGrid.Resources>
+                                    <Style TargetType="Button">
+                                        <Setter Property="Margin" Value="0,3"/>
+                                        <Setter Property="Background" Value="White"/>
+                                        <Setter Property="Width" Value="20"/>
+                                        <Setter Property="Height" Value="30"/>
+                                    </Style>
+                                </UniformGrid.Resources>
+                                <Button ToolTip="Запланировать" fa:Awesome.Content="Solid_Clock" Foreground="Gray"/>
+                                <Button ToolTip="Отправить" fa:Awesome.Content="Solid_Clock" Foreground="DarkBlue"/>
+                            </UniformGrid>
+                        </StackPanel>
+                    </GroupBox>
+                    <GroupBox Grid.Column="1" Header="Задание">
+                        <ListBox>
+                            <ListBoxItem HorizontalContentAlignment="Stretch">
+                                    <Grid>
+                                        <StackPanel>
+                                            <TextBlock Text="Время: 01.03.2021"/>
+                                            <TextBlock Text="Отправитель: Марина"/>
+                                            <TextBlock Text="Получатель: Попов"/>
+                                            <TextBlock Text="Текст: Отчёт февраль"/>
+                                        </StackPanel>
+                                    <Grid Width="15" Height="15" VerticalAlignment="Top" HorizontalAlignment="Right" ToolTip="Удалить">
+                                        <Ellipse Fill="Red" Stroke="White"/>
+                                        <TextBlock Text="Х"  FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" Height="18" />
+                                    </Grid>
+                                </Grid>
+                            </ListBoxItem>
+                            <ListBoxItem HorizontalContentAlignment="Stretch">
+                                <Grid>
+                                    <StackPanel>
+                                        <TextBlock Text="Время: 01.04.2021"/>
+                                        <TextBlock Text="Отправитель: Марина"/>
+                                        <TextBlock Text="Получатель: Попов"/>
+                                        <TextBlock Text="Текст: Отчёт март"/>
+                                    </StackPanel>
+                                    <Grid Width="15" Height="15" VerticalAlignment="Top" HorizontalAlignment="Right" ToolTip="Удалить">
+                                        <Ellipse Fill="Red" Stroke="White"/>
+                                        <TextBlock Text="Х"  FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" Height="18" />
+                                    </Grid>
+                                </Grid>
+                            </ListBoxItem>
+                        </ListBox>
+                    </GroupBox>
+                    <GridSplitter Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="3" Foreground="Transparent"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Статистика">
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Width="150" HorizontalAlignment="Left">
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontWeight" Value="Bold"/>
+                                <Setter Property="HorizontalAlignment" Value="Right"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBlock Text="Отправлено писем:"/>
+                        <TextBlock Text="Всего отправителей:"/>
+                        <TextBlock Text="Всего получателей:"/>
+                    </StackPanel>
+                    <StackPanel Margin="5,0,0,0">
+                        <TextBlock Text="0"/>
+                        <TextBlock Text="0"/>
+                        <TextBlock Text="0"/>
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
         </TabControl>
     </DockPanel>
 </Window>
