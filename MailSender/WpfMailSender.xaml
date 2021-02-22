@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MailSender"
         mc:Ignorable="d"
-        Title="Почтовый рассыльщик" Height="650" Width="800">
+        Title="Почтовый рассыльщик" Height="650" Width="800" MinHeight="600" MinWidth="700">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
@@ -21,202 +21,209 @@
             <MenuItem Header="Сервис"/>
             <MenuItem Header="Справка"/>
         </Menu>
-        <StackPanel>
-            <TabControl Height="550">
-                <TabItem Header="Рассыльщик. Урок 1">
-                    <StackPanel>
-                        <StackPanel.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Width" Value="120"/>
-                                <Setter Property="Height" Value="30"/>
-                                <Setter Property="Margin" Value="10"/>
-                                <Setter Property="TextAlignment" Value="Right"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                            </Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="Width" Value="200"/>
-                                <Setter Property="Height" Value="20"/>
-                                <Setter Property="Margin" Value="10"/>
-                                <Setter Property="VerticalAlignment" Value="Top"/>
-                            </Style>
-                            <Style TargetType="PasswordBox">
-                                <Setter Property="Width" Value="200"/>
-                                <Setter Property="Margin" Value="10"/>
-                                <Setter Property="VerticalAlignment" Value="Top"/>
-                            </Style>
-                        </StackPanel.Resources>
-                        <WrapPanel>
-                            <TextBlock Text="Email отправителя"></TextBlock>
-                            <TextBox x:Name="tbEmailSender"></TextBox>
-                        </WrapPanel>
-                        <WrapPanel>
-                            <TextBlock Text="Email получателя"></TextBlock>
-                            <TextBox x:Name="tbEmailReceiver"></TextBox>
-                        </WrapPanel>
-                        <WrapPanel>
-                            <TextBlock Text="Smtp сервер"></TextBlock>
-                            <TextBox x:Name="tbSmtpServer" Text="smtp.yandex.ru"></TextBox>
-                        </WrapPanel>
-                        <WrapPanel>
-                            <TextBlock Text="Порт"></TextBlock>
-                            <TextBox x:Name="tbPort" Text="587"></TextBox>
-                        </WrapPanel>
-                        <CheckBox x:Name="chbSsl" Margin="150,10,0,10" Width="Auto" Content="Использование SSL" IsChecked="True" Checked="chbSsl_Checked"></CheckBox>
-                        <WrapPanel>
-                            <TextBlock Text="Имя отправителя"></TextBlock>
-                            <TextBox x:Name="tbName" ></TextBox>
-                        </WrapPanel>
-                        <WrapPanel>
-                            <TextBlock Text="Пароль отправителя"></TextBlock>
-                            <PasswordBox x:Name="pbPassword"></PasswordBox>
-                        </WrapPanel>
-                        <Button x:Name="btSendLetter" Click="btSendLetter_Click" Content="Отправить" Margin="150, 0, 450,10" Height="20"></Button>
-                    </StackPanel>
-                </TabItem>
+        
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem DockPanel.Dock="Right">
+                <ResizeGrip/>                
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock x:Name="tbStatus" Text="Ok"/>
+            </StatusBarItem>
+        </StatusBar>
 
-                <TabItem Header="Отправитель">
-                    <StackPanel>
-                        <StackPanel.Resources>
-                            <Style TargetType="WrapPanel">
-                                <Setter Property="Margin" Value="0, 10"/>
-                            </Style>
-                            <Style TargetType="UniformGrid">
-                                <Setter Property="Margin" Value="10"/>
-                                <Setter Property="Width" Value="120"/>
-                                <Setter Property="Height" Value="30"/>
-                                <Setter Property="Columns" Value="3"/>
-                            </Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Width" Value="110"/>
-                                <Setter Property="Height" Value="30"/>
-                                <Setter Property="Margin" Value="10"/>
-                                <Setter Property="TextAlignment" Value="Right"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                            </Style>
-                            <Style TargetType="ComboBox">
-                                <Setter Property="Width" Value="150"/>
-                                <Setter Property="Height" Value="30"/>
-                            </Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Width" Value="200"/>
-                                <Setter Property="Height" Value="30"/>
-                                <Setter Property="Margin" Value="10,0"/>
-                            </Style>
-                            <Style TargetType="Ellipse">
-                                <Setter Property="Width" Value="30"/>
-                                <Setter Property="Height" Value="30"/>
-                            </Style>
-                            <Style TargetType="Rectangle">
-                                <Setter Property="Width" Value="30"/>
-                                <Setter Property="Height" Value="30"/>
-                            </Style>
-                        </StackPanel.Resources>
-                        <WrapPanel>
-                            <TextBlock>Email отправителя</TextBlock>
-                            <ComboBox x:Name="cbEmailsSender"></ComboBox>
-                            <UniformGrid>
-                                <Viewbox Width="30" Height="30">
-                                    <Grid Width="30" Height="30">
-                                        <Ellipse Fill="Green" Stroke="White"/>
-                                        <TextBlock MouseDown="AddEmailSender" Text="+" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
-                                    </Grid>
-                                </Viewbox>
-                                <Viewbox Width="30" Height="30">
-                                    <Grid Width="30" Height="30">
-                                        <Rectangle Fill="Yellow" Stroke="White"/>
-                                        <TextBlock MouseDown="EditEmailsSender" Text="..." HorizontalAlignment="Center" Foreground="OrangeRed" TextAlignment="Center" Height="20" />
-                                    </Grid>
-                                </Viewbox>
-                                <Viewbox Width="30" Height="30">
-                                    <Grid Width="30" Height="30">
-                                        <Ellipse Fill="Red" Stroke="White"/>
-                                        <TextBlock MouseDown="DeleteEmailSender" Text="-" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
-                                    </Grid>
-                                </Viewbox>
-                            </UniformGrid>
-                        </WrapPanel>
-                        <WrapPanel>
-                            <TextBlock>Smtp-сервер</TextBlock>
-                            <ComboBox x:Name="cbSmtpServer"></ComboBox>
-                            <UniformGrid>
-                                <Viewbox Width="30" Height="30">
-                                    <Grid Width="30" Height="30">
-                                        <Ellipse Fill="Green" Stroke="White"/>
-                                        <TextBlock MouseDown="AddSmtpServer" Text="+" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
-                                    </Grid>
-                                </Viewbox>
-                                <Viewbox Width="30" Height="30">
-                                    <Grid Width="30" Height="30">
-                                        <Rectangle Fill="Yellow" Stroke="White"/>
-                                        <TextBlock MouseDown="EditSmtpServers" Text="..." HorizontalAlignment="Center" Foreground="OrangeRed" TextAlignment="Center" Height="20" />
-                                    </Grid>
-                                </Viewbox>
-                                <Viewbox Width="30" Height="30">
-                                    <Grid Width="30" Height="30">
-                                        <Ellipse Fill="Red" Stroke="White"/>
-                                        <TextBlock MouseDown="DeleteSmtpServer" Text="-" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
-                                    </Grid>
-                                </Viewbox>
-                            </UniformGrid>
-                        </WrapPanel>
-                        <WrapPanel>
-                            <TextBlock>Порт</TextBlock>
-                            <ComboBox x:Name="cbPorts"></ComboBox>
-                            <UniformGrid>
-                                <Viewbox Width="30" Height="30">
-                                    <Grid Width="30" Height="30">
-                                        <Ellipse Fill="Green" Stroke="White"/>
-                                        <TextBlock MouseDown="AddPort" Text="+" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
-                                    </Grid>
-                                </Viewbox>
-                                <Viewbox Width="30" Height="30">
-                                    <Grid Width="30" Height="30">
-                                        <Rectangle Fill="Yellow" Stroke="White"/>
-                                        <TextBlock MouseDown="EditPorts" Text="..." HorizontalAlignment="Center" Foreground="OrangeRed" TextAlignment="Center" VerticalAlignment="Center" Height="20" />
-                                    </Grid>
-                                </Viewbox>
-                                <Viewbox Width="30" Height="30">
-                                    <Grid Width="30" Height="30">
-                                        <Ellipse Fill="Red" Stroke="White"/>
-                                        <TextBlock MouseDown="DeletePort" Text="-" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" Height="20" />
-                                    </Grid>
-                                </Viewbox>
-                            </UniformGrid>
-                        </WrapPanel>
-                    </StackPanel>
-                </TabItem>
-                <TabItem Header="Список получателей">
-                    <GroupBox Grid.Column="1" Header="Получатели">
-                        <Grid>
-                            <DataGrid x:Name="dgReceivers" AutoGenerateColumns="False" EnableRowVirtualization="True" HorizontalAlignment="Left" IsReadOnly="True" Width="Auto">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn x:Name="dgtcId" Header="Id" IsReadOnly="True" Width="Auto"/>
-                                    <DataGridTextColumn x:Name="dgtcEmail" Header="Email" IsReadOnly="True" Width="Auto"/>
-                                    <DataGridTextColumn x:Name="dgtcName" Header="Имя" IsReadOnly="True" Width="Auto"/>
-                                    <DataGridTextColumn x:Name="dgtcTypeOfDelivery" Header="Тип рассылки" IsReadOnly="True" Width="Auto"/>
-                                    <DataGridTextColumn x:Name="dgtcComment" Header="Комментарий" IsReadOnly="True" Width="Auto"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
-                    </GroupBox>
-                </TabItem>
-                <TabItem Header="Редактор писем">
-                    <GroupBox Grid.Column="1" Header="Письма">
-                        <Grid>
-                            <DataGrid x:Name="dgLetters" AutoGenerateColumns="False" EnableRowVirtualization="True" HorizontalAlignment="Left" IsReadOnly="True" Width="Auto" >
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn x:Name="dgtcIdLetter" Header="Id" IsReadOnly="True" Width="Auto"/>
-                                    <DataGridTextColumn x:Name="dgtcTypeOfDeliveryLetter" Header="Тип рассылки" IsReadOnly="True" Width="Auto"/>
-                                    <DataGridTextColumn x:Name="dgtcText" Header="Текст" IsReadOnly="True" Width="Auto"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </Grid>
-                    </GroupBox>
-                </TabItem>
-                <TabItem Header="Рассписание"/>
-                <TabItem Header="Статистика"/>
-            </TabControl>
-            <TextBlock x:Name="tbStatus" Text="Статус"/>
-        </StackPanel>
+        <TabControl Height="550">
+            <TabItem Header="Рассыльщик. Урок 1">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Width" Value="120"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Margin" Value="10"/>
+                            <Setter Property="TextAlignment" Value="Right"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Width" Value="200"/>
+                            <Setter Property="Height" Value="20"/>
+                            <Setter Property="Margin" Value="10"/>
+                            <Setter Property="VerticalAlignment" Value="Top"/>
+                        </Style>
+                        <Style TargetType="PasswordBox">
+                            <Setter Property="Width" Value="200"/>
+                            <Setter Property="Margin" Value="10"/>
+                            <Setter Property="VerticalAlignment" Value="Top"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <WrapPanel>
+                        <TextBlock Text="Email отправителя"></TextBlock>
+                        <TextBox x:Name="tbEmailSender"></TextBox>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock Text="Email получателя"></TextBlock>
+                        <TextBox x:Name="tbEmailReceiver"></TextBox>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock Text="Smtp сервер"></TextBlock>
+                        <TextBox x:Name="tbSmtpServer" Text="smtp.yandex.ru"></TextBox>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock Text="Порт"></TextBlock>
+                        <TextBox x:Name="tbPort" Text="587"></TextBox>
+                    </WrapPanel>
+                    <CheckBox x:Name="chbSsl" Margin="150,10,0,10" Width="Auto" Content="Использование SSL" IsChecked="True" Checked="chbSsl_Checked"></CheckBox>
+                    <WrapPanel>
+                        <TextBlock Text="Имя отправителя"></TextBlock>
+                        <TextBox x:Name="tbName" ></TextBox>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock Text="Пароль отправителя"></TextBlock>
+                        <PasswordBox x:Name="pbPassword"></PasswordBox>
+                    </WrapPanel>
+                    <Button x:Name="btSendLetter" Click="btSendLetter_Click" Content="Отправить" Margin="150, 0, 450,10" Height="20"></Button>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="Отправитель">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="WrapPanel">
+                            <Setter Property="Margin" Value="0, 10"/>
+                        </Style>
+                        <Style TargetType="UniformGrid">
+                            <Setter Property="Margin" Value="10"/>
+                            <Setter Property="Width" Value="120"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Columns" Value="3"/>
+                        </Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Width" Value="110"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Margin" Value="10"/>
+                            <Setter Property="TextAlignment" Value="Right"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="Width" Value="150"/>
+                            <Setter Property="Height" Value="30"/>
+                        </Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Width" Value="200"/>
+                            <Setter Property="Height" Value="30"/>
+                            <Setter Property="Margin" Value="10,0"/>
+                        </Style>
+                        <Style TargetType="Ellipse">
+                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="Height" Value="30"/>
+                        </Style>
+                        <Style TargetType="Rectangle">
+                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="Height" Value="30"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <WrapPanel>
+                        <TextBlock>Email отправителя</TextBlock>
+                        <ComboBox x:Name="cbEmailsSender"></ComboBox>
+                        <UniformGrid>
+                            <Viewbox Width="30" Height="30">
+                                <Grid Width="30" Height="30">
+                                    <Ellipse Fill="Green" Stroke="White"/>
+                                    <TextBlock MouseDown="AddEmailSender" Text="+" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
+                                </Grid>
+                            </Viewbox>
+                            <Viewbox Width="30" Height="30">
+                                <Grid Width="30" Height="30">
+                                    <Rectangle Fill="Yellow" Stroke="White"/>
+                                    <TextBlock MouseDown="EditEmailsSender" Text="..." HorizontalAlignment="Center" Foreground="OrangeRed" TextAlignment="Center" Height="20" />
+                                </Grid>
+                            </Viewbox>
+                            <Viewbox Width="30" Height="30">
+                                <Grid Width="30" Height="30">
+                                    <Ellipse Fill="Red" Stroke="White"/>
+                                    <TextBlock MouseDown="DeleteEmailSender" Text="-" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
+                                </Grid>
+                            </Viewbox>
+                        </UniformGrid>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock>Smtp-сервер</TextBlock>
+                        <ComboBox x:Name="cbSmtpServer"></ComboBox>
+                        <UniformGrid>
+                            <Viewbox Width="30" Height="30">
+                                <Grid Width="30" Height="30">
+                                    <Ellipse Fill="Green" Stroke="White"/>
+                                    <TextBlock MouseDown="AddSmtpServer" Text="+" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
+                                </Grid>
+                            </Viewbox>
+                            <Viewbox Width="30" Height="30">
+                                <Grid Width="30" Height="30">
+                                    <Rectangle Fill="Yellow" Stroke="White"/>
+                                    <TextBlock MouseDown="EditSmtpServers" Text="..." HorizontalAlignment="Center" Foreground="OrangeRed" TextAlignment="Center" Height="20" />
+                                </Grid>
+                            </Viewbox>
+                            <Viewbox Width="30" Height="30">
+                                <Grid Width="30" Height="30">
+                                    <Ellipse Fill="Red" Stroke="White"/>
+                                    <TextBlock MouseDown="DeleteSmtpServer" Text="-" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
+                                </Grid>
+                            </Viewbox>
+                        </UniformGrid>
+                    </WrapPanel>
+                    <WrapPanel>
+                        <TextBlock>Порт</TextBlock>
+                        <ComboBox x:Name="cbPorts"></ComboBox>
+                        <UniformGrid>
+                            <Viewbox Width="30" Height="30">
+                                <Grid Width="30" Height="30">
+                                    <Ellipse Fill="Green" Stroke="White"/>
+                                    <TextBlock MouseDown="AddPort" Text="+" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
+                                </Grid>
+                            </Viewbox>
+                            <Viewbox Width="30" Height="30">
+                                <Grid Width="30" Height="30">
+                                    <Rectangle Fill="Yellow" Stroke="White"/>
+                                    <TextBlock MouseDown="EditPorts" Text="..." HorizontalAlignment="Center" Foreground="OrangeRed" TextAlignment="Center" VerticalAlignment="Center" Height="20" />
+                                </Grid>
+                            </Viewbox>
+                            <Viewbox Width="30" Height="30">
+                                <Grid Width="30" Height="30">
+                                    <Ellipse Fill="Red" Stroke="White"/>
+                                    <TextBlock MouseDown="DeletePort" Text="-" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" Height="20" />
+                                </Grid>
+                            </Viewbox>
+                        </UniformGrid>
+                    </WrapPanel>
+                </StackPanel>
+            </TabItem>
+            <TabItem Header="Список получателей">
+                <GroupBox Grid.Column="1" Header="Получатели">
+                    <Grid>
+                        <DataGrid x:Name="dgReceivers" AutoGenerateColumns="False" EnableRowVirtualization="True" HorizontalAlignment="Left" IsReadOnly="True" Width="Auto">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="dgtcId" Header="Id" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn x:Name="dgtcEmail" Header="Email" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn x:Name="dgtcName" Header="Имя" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn x:Name="dgtcTypeOfDelivery" Header="Тип рассылки" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn x:Name="dgtcComment" Header="Комментарий" IsReadOnly="True" Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </GroupBox>
+            </TabItem>
+            <TabItem Header="Редактор писем">
+                <GroupBox Grid.Column="1" Header="Письма">
+                    <Grid>
+                        <DataGrid x:Name="dgLetters" AutoGenerateColumns="False" EnableRowVirtualization="True" HorizontalAlignment="Left" IsReadOnly="True" Width="Auto" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn x:Name="dgtcIdLetter" Header="Id" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn x:Name="dgtcTypeOfDeliveryLetter" Header="Тип рассылки" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn x:Name="dgtcText" Header="Текст" IsReadOnly="True" Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                </GroupBox>
+            </TabItem>
+            <TabItem Header="Рассписание"/>
+            <TabItem Header="Статистика"/>
+        </TabControl>
     </DockPanel>
 </Window>
