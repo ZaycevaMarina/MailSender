@@ -7,7 +7,6 @@
         xmlns:l="clr-namespace:MailSender"
         xmlns:m="clr-namespace:MailSender.Models;assembly=MailSender.lib"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
-        xmlns:local="clr-namespace:MailSender"
         mc:Ignorable="d"
         Title="Почтовый рассыльщик" Height="650" Width="800" MinHeight="600" MinWidth="700">
     <DockPanel>
@@ -24,10 +23,10 @@
             <MenuItem Header="Сервис"/>
             <MenuItem Header="Справка"/>
         </Menu>
-        
+
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem DockPanel.Dock="Right">
-                <ResizeGrip/>                
+                <ResizeGrip/>
             </StatusBarItem>
             <StatusBarItem>
                 <TextBlock x:Name="tbStatus" Text="Ok"/>
@@ -133,7 +132,7 @@
                             <Viewbox Width="30" Height="30">
                                 <Grid Width="30" Height="30">
                                     <Ellipse Fill="Green" Stroke="White"/>
-                                    <TextBlock MouseDown="AddEmailSender" Text="+" ToolTip="Добавить" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
+                                    <TextBlock MouseDown="AddEmailSender" Text="+" ToolTip="Добавить" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" Margin="0,0,0,5" VerticalAlignment="Bottom" />
                                 </Grid>
                             </Viewbox>
                             <Viewbox Width="30" Height="30">
@@ -155,12 +154,12 @@
                         <ComboBox x:Name="cbSmtpServer" SelectedIndex="0"
                                   ItemsSource="{x:Static data:TestData.Servers}"
                                   DisplayMemberPath="Name">
-                                  </ComboBox>
+                        </ComboBox>
                         <UniformGrid>
                             <Viewbox Width="30" Height="30">
                                 <Grid Width="30" Height="30">
                                     <Ellipse Fill="Green" Stroke="White"/>
-                                    <TextBlock MouseDown="AddSmtpServer" Text="+" ToolTip="Добавить" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" />
+                                    <TextBlock MouseDown="AddSmtpServer" Text="+" ToolTip="Добавить" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" Margin="0,5,0,0" VerticalAlignment="Top" />
                                 </Grid>
                             </Viewbox>
                             <Viewbox Width="30" Height="30">
@@ -181,7 +180,7 @@
                         <TextBlock>Порт</TextBlock>
                         <ComboBox x:Name="cbPorts" SelectedIndex="0"
                                   ItemsSource="{x:Static data:TestData.Ports}"
-                                  DisplayMemberPath="ServerPort">                            
+                                  DisplayMemberPath="ServerPort">
                         </ComboBox>
                         <UniformGrid>
                             <Viewbox Width="30" Height="30">
@@ -260,7 +259,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>                    
+                    </Grid.ColumnDefinitions>
                     <GroupBox Grid.Column="0" Header="Время">
                         <StackPanel>
                             <TextBlock Text="Дата" HorizontalAlignment="Center"/>
@@ -281,7 +280,7 @@
                                 </Button>
                                 <Button ToolTip="Отправить">
                                     <fa:ImageAwesome Icon="Solid_Clock" Foreground="DarkBlue" Height="20"/>
-                                </Button> 
+                                </Button>
                             </UniformGrid>
                         </StackPanel>
                     </GroupBox>
@@ -290,10 +289,10 @@
                             <ListBox.ItemContainerStyle>
                                 <Style>
                                     <Setter Property="ListBoxItem.Background" Value="LightGray"/>
-                                    <Setter Property="ListBoxItem.Margin" Value="5"/>                                    
+                                    <Setter Property="ListBoxItem.Margin" Value="5"/>
                                 </Style>
                             </ListBox.ItemContainerStyle>
-                            <ListBoxItem HorizontalContentAlignment="Stretch">                                
+                            <ListBoxItem HorizontalContentAlignment="Stretch">
                                 <Grid>
                                     <StackPanel>
                                         <TextBlock Text="Время: 01.03.2021"/>

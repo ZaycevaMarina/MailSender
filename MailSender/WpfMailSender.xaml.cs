@@ -34,12 +34,10 @@ namespace MailSender
 
         private void AddEmailSender(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
         }
 
         private void EditEmailsSender(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
         }
 
         private void DeleteEmailSender(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -49,12 +47,14 @@ namespace MailSender
 
         private void AddSmtpServer(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            Window window_server_edit = new ServerEditDialog();
+            window_server_edit.ShowDialog();
         }
 
         private void EditSmtpServers(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-
+            Window window_server_edit = new ServerEditDialog();
+            window_server_edit.ShowDialog();
         }
 
         private void DeleteSmtpServer(object sender, System.Windows.Input.MouseButtonEventArgs e)
