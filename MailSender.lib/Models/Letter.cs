@@ -4,10 +4,10 @@ using System.Text;
 
 namespace MailSender.Models
 {
-    class Recipient:User
+    public class Letter
     {
         public int Id { get; set; }
-        public string TypeOfDelivery { get; set; }
-        public string Comment { get; set; }
+        public string Title { get; set; }
+        public string Text { get; set; }
     }
 }

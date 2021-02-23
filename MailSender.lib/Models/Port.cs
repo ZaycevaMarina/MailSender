@@ -4,9 +4,8 @@ using System.Text;
 
 namespace MailSender.Models
 {
-    class Sender:User
+    public class Port
     {
-        public int Id { get; set; }
-        public string Comment { get; set; }
+        public int ServerPort { get; set; }
     }
 }

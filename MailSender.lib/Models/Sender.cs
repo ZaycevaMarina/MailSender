@@ -4,9 +4,9 @@ using System.Text;
 
 namespace MailSender.Models
 {
-    abstract class User
+    public class Sender:User
     {
-        public string Name { get; set; }
-        public string EmailAddress { get; set; }
+        public int Id { get; set; }
+        public string Comment { get; set; }
     }
 }

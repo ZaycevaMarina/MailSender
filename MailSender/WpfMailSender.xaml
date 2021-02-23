@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:data="clr-namespace:MailSender.Data"
         xmlns:l="clr-namespace:MailSender"
-        xmlns:m="clr-namespace:MailSender.Models"
+        xmlns:m="clr-namespace:MailSender.Models;assembly=MailSender.lib"
         xmlns:fa="http://schemas.fontawesome.com/icons/"
         xmlns:local="clr-namespace:MailSender"
         mc:Ignorable="d"
@@ -234,7 +234,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <GroupBox Header="Письма" Grid.Column="0">
-                        <ListBox x:Name ="lbLetters" ItemsSource="{x:Static data:TestData.Letters }" DisplayMemberPath="Id">
+                        <ListBox x:Name ="lbLetters" ItemsSource="{x:Static data:TestData.Letters }" DisplayMemberPath="Id" SelectedIndex="0">
                         </ListBox>
                     </GroupBox>
                     <GroupBox Header="Письма" Grid.Column="1">
