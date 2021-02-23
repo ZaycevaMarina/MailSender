@@ -7,6 +7,7 @@ namespace MailSender.Models
     class Recipient:User
     {
         public int Id { get; set; }
+        public string TypeOfDelivery { get; set; }
         public string Comment { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using MailSender.Models;
 
 namespace MailSender.Data
 {
-    class TestData
+    internal class TestData
     {
         public static IList<Server> Servers { get; } = new List<Server>
          {
@@ -56,14 +56,14 @@ namespace MailSender.Data
              {
                  Id = 1,
                  Name = "Марина З.",
-                 Address = "mari_minflash@yahoo.com",
+                 EmailAddress = "mari_minflash@yahoo.com",
                  Comment = "Почта от Марины З."
                  },
                  new Sender
                  {
                  Id = 2,
                  Name = "Марина Н.",
-                 Address = "mnovachuk@yandex.ru",
+                 EmailAddress = "mnovachuk@yandex.ru",
                  Comment = "Почта от Марины Н."
              },
          };
@@ -73,25 +73,28 @@ namespace MailSender.Data
              {
                  Id = 1,
                  Name = "Аксёнов",
-                 Address = "aksyenov@yandex.ru",
+                 EmailAddress = "aksyenov@yandex.ru",
+                 TypeOfDelivery="other_work",
                  Comment = "Почта для Аксёнова"
              },
              new Recipient
              {
                  Id = 2,
                  Name = "Попов",
-                 Address = "petrov@yahoo.com",
+                 EmailAddress = "petrov@yahoo.com",
+                 TypeOfDelivery="hobby",
                  Comment = "Почта для Попова"
              },
              new Recipient
              {
                  Id = 3,
                  Name = "Кузнецов",
-                 Address = "kyznetsov@gmail.com",
+                 EmailAddress = "kyznetsov@gmail.com",
+                 TypeOfDelivery="main_work",
                  Comment = "Почта для Кузнецова"
              },
          };
-        public static IList<Letter> Messages { get; } = Enumerable
+        public static IList<Letter> Letters { get; } = Enumerable
         .Range(1, 10)
         .Select(i => new Letter
         {

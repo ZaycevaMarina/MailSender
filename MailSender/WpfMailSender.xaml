@@ -13,7 +13,6 @@
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="Файл">
-                <MenuItem Header="Рассыльщик. Урок 1"/>
                 <MenuItem Header="Отправитель"/>
                 <MenuItem Header="Список получателей"/>
                 <MenuItem Header="Редактор писем"/>
@@ -128,7 +127,7 @@
                         <TextBlock>Email отправителя</TextBlock>
                         <ComboBox x:Name="cbEmailsSender" SelectedIndex="0"
                                   ItemsSource="{x:Static data:TestData.Senders}"
-                                  DisplayMemberPath="Address">
+                                  DisplayMemberPath="EmailAddress">
                         </ComboBox>
                         <UniformGrid>
                             <Viewbox Width="30" Height="30">
@@ -210,13 +209,13 @@
             <TabItem Header="Список получателей">
                 <GroupBox Grid.Column="1" Header="Получатели" VerticalAlignment="Top">
                     <Grid VerticalAlignment="Top">
-                        <DataGrid x:Name="dgReceivers" AutoGenerateColumns="False" EnableRowVirtualization="True" HorizontalAlignment="Left" IsReadOnly="True" Width="Auto">
+                        <DataGrid x:Name="dgReceivers" ItemsSource="{x:Static data:TestData.Recipients}" AutoGenerateColumns="False" EnableRowVirtualization="True" HorizontalAlignment="Left" IsReadOnly="True" Width="Auto">
                             <DataGrid.Columns>
-                                <DataGridTextColumn x:Name="dgtcId" Header="Id" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn x:Name="dgtcEmail" Header="Email" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn x:Name="dgtcName" Header="Имя" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn x:Name="dgtcTypeOfDelivery" Header="Тип рассылки" IsReadOnly="True" Width="Auto"/>
-                                <DataGridTextColumn x:Name="dgtcComment" Header="Комментарий" IsReadOnly="True" Width="*"/>
+                                <DataGridTextColumn x:Name="dgtcId" Header="Id" Binding="{Binding Id}" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn x:Name="dgtcEmail" Header="Email" Binding="{Binding EmailAddress}" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn x:Name="dgtcName" Header="Имя" Binding="{Binding Name}" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn x:Name="dgtcTypeOfDelivery" Header="Тип рассылки" Binding="{Binding TypeOfDelivery}" IsReadOnly="True" Width="Auto"/>
+                                <DataGridTextColumn x:Name="dgtcComment" Header="Комментарий" Binding="{Binding Comment}" IsReadOnly="True" Width="*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -232,15 +231,16 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <GroupBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Header="Письма">
+                    <GroupBox Header="Письма" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" >
                         <ListBox>
+                            <!--ItemsSource="{x:Static data:TestData.Letters }" SelectedItem="Id"-->
                             <ListBoxItem Content="Письмо 1"></ListBoxItem>
                             <ListBoxItem Content="Письмо 2"></ListBoxItem>
                             <ListBoxItem Content="Письмо 3"></ListBoxItem>
                         </ListBox>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Grid.Row="0" Header="Тема">
-                        <TextBox/>
+                        <TextBox />
                     </GroupBox>
                     <GroupBox Grid.Column="1" Grid.Row="1" Header="Текст">
                         <TextBox AcceptsReturn="True" AcceptsTab="True"/>
