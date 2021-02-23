@@ -209,7 +209,9 @@
             <TabItem Header="Список получателей">
                 <GroupBox Grid.Column="1" Header="Получатели" VerticalAlignment="Top">
                     <Grid VerticalAlignment="Top">
-                        <DataGrid x:Name="dgReceivers" ItemsSource="{x:Static data:TestData.Recipients}" AutoGenerateColumns="False" EnableRowVirtualization="True" HorizontalAlignment="Left" IsReadOnly="True" Width="Auto">
+                        <DataGrid x:Name="dgReceivers" ItemsSource="{x:Static data:TestData.Recipients}" 
+                                  AutoGenerateColumns="False" EnableRowVirtualization="True" HorizontalAlignment="Left" IsReadOnly="True" Width="Auto"
+                                  GridLinesVisibility="Vertical" VerticalGridLinesBrush="DarkGray" AlternatingRowBackground="AliceBlue">
                             <DataGrid.Columns>
                                 <DataGridTextColumn x:Name="dgtcId" Header="Id" Binding="{Binding Id}" IsReadOnly="True" Width="Auto"/>
                                 <DataGridTextColumn x:Name="dgtcEmail" Header="Email" Binding="{Binding EmailAddress}" IsReadOnly="True" Width="Auto"/>
@@ -231,20 +233,26 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <GroupBox Header="Письма" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" >
-                        <ListBox>
-                            <!--ItemsSource="{x:Static data:TestData.Letters }" SelectedItem="Id"-->
-                            <ListBoxItem Content="Письмо 1"></ListBoxItem>
-                            <ListBoxItem Content="Письмо 2"></ListBoxItem>
-                            <ListBoxItem Content="Письмо 3"></ListBoxItem>
+                    <GroupBox Header="Письма" Grid.Column="0">
+                        <ListBox x:Name ="lbLetters" ItemsSource="{x:Static data:TestData.Letters }" DisplayMemberPath="Id">
                         </ListBox>
                     </GroupBox>
-                    <GroupBox Grid.Column="1" Grid.Row="0" Header="Тема">
-                        <TextBox />
+                    <GroupBox Header="Письма" Grid.Column="1">
+                        <DockPanel DataContext="{Binding SelectedItem, ElementName=lbLetters}">
+                            <GroupBox DockPanel.Dock="Top" Header="Тема">
+                                <TextBox Text="{Binding Title}"/>
+                            </GroupBox>
+                            <GroupBox DockPanel.Dock="Top" Header="Текст">
+                                <TextBox AcceptsReturn="True" AcceptsTab="True" Text="{Binding Text}"/>
+                            </GroupBox>
+                        </DockPanel>
+                    </GroupBox>
+                    <!--<GroupBox Grid.Column="1" Grid.Row="0" Header="Тема">
+                        <TextBox ItemsSource="{x:Static data:TestData.Letters }" DisplayMemberPath="Id"/>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Grid.Row="1" Header="Текст">
                         <TextBox AcceptsReturn="True" AcceptsTab="True"/>
-                    </GroupBox>
+                    </GroupBox>-->
                 </Grid>
             </TabItem>
             <TabItem Header="Рассписание">
@@ -279,14 +287,20 @@
                     </GroupBox>
                     <GroupBox Grid.Column="1" Header="Задание">
                         <ListBox>
-                            <ListBoxItem HorizontalContentAlignment="Stretch">
-                                    <Grid>
-                                        <StackPanel>
-                                            <TextBlock Text="Время: 01.03.2021"/>
-                                            <TextBlock Text="Отправитель: Марина"/>
-                                            <TextBlock Text="Получатель: Попов"/>
-                                            <TextBlock Text="Текст: Отчёт февраль"/>
-                                        </StackPanel>
+                            <ListBox.ItemContainerStyle>
+                                <Style>
+                                    <Setter Property="ListBoxItem.Background" Value="LightGray"/>
+                                    <Setter Property="ListBoxItem.Margin" Value="5"/>                                    
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBoxItem HorizontalContentAlignment="Stretch">                                
+                                <Grid>
+                                    <StackPanel>
+                                        <TextBlock Text="Время: 01.03.2021"/>
+                                        <TextBlock Text="Отправитель: Марина"/>
+                                        <TextBlock Text="Получатель: Попов"/>
+                                        <TextBlock Text="Текст: Отчёт февраль"/>
+                                    </StackPanel>
                                     <Grid Width="15" Height="15" VerticalAlignment="Top" HorizontalAlignment="Right" ToolTip="Удалить">
                                         <Ellipse Fill="Red" Stroke="White"/>
                                         <TextBlock Text="Х"  FontWeight="Bold" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" Height="18" />
