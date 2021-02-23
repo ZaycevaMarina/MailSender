@@ -9,8 +9,4 @@
     <AssemblyOriginatorKeyFile>MailSender.lib.key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

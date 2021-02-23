@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using MailSender.Models;
+using MailSender.Services;
 
 
 namespace MailSender.Data
@@ -17,7 +18,7 @@ namespace MailSender.Data
                  Port = 567,
                  UseSSL = true,
                  Login = "username@yandex.ru",
-                 Password = "PassWord",
+                 Password = TextEncoder.Encode("PassWord", 3),
              },
              new Server
              {
@@ -27,7 +28,7 @@ namespace MailSender.Data
                  Port = 465,
                  UseSSL = true,
                  Login = "username@mail.ru",
-                 Password = "PassWord",
+                 Password = TextEncoder.Encode("PassWord", 5),
              },
              new Server
              {
@@ -37,7 +38,7 @@ namespace MailSender.Data
                  Port = 465,
                  UseSSL = true,
                  Login = "username@yahoo.com",
-                 Password = "PassWord",
+                 Password = TextEncoder.Encode("PassWord", 7),
              },
              new Server
              {
@@ -47,7 +48,7 @@ namespace MailSender.Data
                  Port = 465,
                  UseSSL = true,
                  Login = "username@gmail.com",
-                 Password = "PassWord",
+                 Password = TextEncoder.Encode("PassWord", 9),
              }
         };
         public static IList<Sender> Senders { get; } = new List<Sender>
