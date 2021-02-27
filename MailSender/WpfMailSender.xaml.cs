@@ -34,6 +34,8 @@ namespace MailSender
 
         private void AddEmailSender(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            Window window_sender_edit = new WpfSenderEditDialog(cbEmailsSender.SelectedValue);
+            window_sender_edit.ShowDialog();
         }
 
         private void EditEmailsSender(object sender, System.Windows.Input.MouseButtonEventArgs e)

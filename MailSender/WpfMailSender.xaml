@@ -132,7 +132,7 @@
                             <Viewbox Width="30" Height="30">
                                 <Grid Width="30" Height="30">
                                     <Ellipse Fill="Green" Stroke="White"/>
-                                    <TextBlock MouseDown="AddEmailSender" Text="+" ToolTip="Добавить" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" Margin="0,0,0,5" VerticalAlignment="Bottom" />
+                                    <TextBlock MouseDown="AddEmailSender" Text="+" ToolTip="Добавить" HorizontalAlignment="Center" Foreground="White" TextAlignment="Center" Height="20" Margin="0,5,0,0" VerticalAlignment="Top" />
                                 </Grid>
                             </Viewbox>
                             <Viewbox Width="30" Height="30">
