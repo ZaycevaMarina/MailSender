@@ -1,0 +1,25 @@
+﻿<Window x:Class="CsvReader.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CsvReader"
+        mc:Ignorable="d"
+        Title="Чтение csv-файла произвольной структуры большого объёма с сохранением в txt-файл"
+        Height="450" Width="800">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Файл">
+                <MenuItem Header="Открыть" Click="miOpenFileCsv_Click" />
+                <MenuItem Header="Сохранить как .txt" Click="miSaveFileAsTxt_Click" />
+                <MenuItem Header="Создать .csv" Click="mi_CreateFileCsv_Click" />
+            </MenuItem>
+        </Menu>
+        <TextBlock Name="tb_status" DockPanel.Dock="Bottom" TextAlignment="Left">
+            Ок!
+        </TextBlock>
+        <!--<DataGrid Name="Data"/>-->
+        <TextBox Name="DataFile" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"></TextBox>
+        
+    </DockPanel>
+</Window>
