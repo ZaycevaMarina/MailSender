@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSender.lib", "MailSende
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson_5", "Lesson_5\Lesson_5.csproj", "{08560C9C-40D7-4609-BCB6-87C93AA09122}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvReader", "CsvReader\CsvReader.csproj", "{80E66E3F-A78F-47E2-90FE-1FD1A7332CC8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{08560C9C-40D7-4609-BCB6-87C93AA09122}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08560C9C-40D7-4609-BCB6-87C93AA09122}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08560C9C-40D7-4609-BCB6-87C93AA09122}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80E66E3F-A78F-47E2-90FE-1FD1A7332CC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80E66E3F-A78F-47E2-90FE-1FD1A7332CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80E66E3F-A78F-47E2-90FE-1FD1A7332CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80E66E3F-A78F-47E2-90FE-1FD1A7332CC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
