@@ -17,6 +17,7 @@ namespace CsvReader
         private static List<CsvObject> __CsvObjects = new List<CsvObject>();
         public void miOpenFileCsv_Click(object Sender, RoutedEventArgs E)
         {
+            WriteStatus("Выбор csv-файла для чтения");
             var open_dialog = new OpenFileDialog
             {
                 Filter = "Csv (*.csv)|*.csv|Все файлы (*.*)|*.*",
@@ -30,23 +31,25 @@ namespace CsvReader
             var file_name = open_dialog.FileName;
 
             if (!File.Exists(file_name))
+            {
+                tb_status.Text = $"Не существует файл {file_name} ";
                 return;
-
+            }
+            tb_status.Text = $"Чтение файла {file_name}";
             var load_data_thread = new Thread(() => LoadData(file_name));
             load_data_thread.Start();
         }
-        private void LoadData(string FileName)
+        private void LoadData(string file_name)
         {
-            var csv_objects = GetUsers(FileName);
-            //Data.Dispatcher.Invoke(() => Data.ItemsSource = csv_objects);
+            var csv_objects = GetUsers(file_name);
             StringBuilder sb = new StringBuilder();
             foreach (CsvObject csv_line in __CsvObjects)
             {
                 sb.AppendLine(csv_line.ToTextBox('\t'));
             }
             DataFile.Dispatcher.Invoke(() => DataFile.Text = sb.ToString());
+            WriteStatus($"Загружен файл {file_name}");
         }
-
         private static IEnumerable<CsvObject> GetUsers(string file_name)
         {
             __CsvObjects.Clear();
@@ -65,35 +68,6 @@ namespace CsvReader
                         for (int i = 4; i < values.Length; i++)
                             some_info[i - 4] = values[i];
                     }                        
-                    __CsvObjects.Add(new CsvObject(
-                    values[0],
-                    values[1],
-                    values[2],
-                    values[3],
-                    some_info
-                    ));
-                }
-            }
-            return __CsvObjects;
-        }
-        private static IEnumerable<CsvObject> GetUsersWithInfo(string file_name)
-        {
-            __CsvObjects.Clear();
-            using (StreamReader sr = new StreamReader(file_name, System.Text.Encoding.UTF8))
-            {
-                string csv_line = "";
-                while ((csv_line = sr.ReadLine()) != null)
-                {
-                    string[] values = csv_line.Split(';');
-                    if (values.Length < 4)
-                        continue;
-                    string[] some_info = null;
-                    if (values.Length > 4)
-                    {
-                        some_info = new string[values.Length - 4];
-                        for (int i = 4; i < values.Length; i++)
-                            some_info[i - 4] = values[i];
-                    }
                     __CsvObjects.Add(new CsvObject(
                     values[0],
                     values[1],
@@ -142,7 +116,6 @@ namespace CsvReader
             var write_file_thread = new Thread(() => WriteCsvFile(file_name, 100_000));
             write_file_thread.Start();
         }
-
         private void  WriteCsvFile(string file_name, int count)
         {
             List<CsvObject> list = new List<CsvObject>();
@@ -157,7 +130,12 @@ namespace CsvReader
                 {
                     some_info[k] = "Инфо_" + i + "_" + k;
                 }
-                list.Add(new CsvObject("Фамилия_" + i, "Имя_" + i, "Отчество_" + i, i + Emails[rnd.Next(0, Emails.Length)], some_info));
+                CsvObject csv_obj = new CsvObject("Фамилия_" + i, "Имя_" + i, "Отчество_" + i, i + Emails[rnd.Next(0, Emails.Length)], some_info);
+                list.Add(csv_obj);
+                //lock (list)
+                //{
+                //    ThreadPool.QueueUserWorkItem(_ => list.Add(csv_obj));
+                //}                
             }
             StringBuilder sb = new StringBuilder();
             foreach (CsvObject csv_line in list)
@@ -171,13 +149,11 @@ namespace CsvReader
             }
             WriteStatus("Csv-файл успешно создан");
         }
-
         private void WriteStatus(string status_srt)
         {
             tb_status.Dispatcher.Invoke(() => tb_status.Text = status_srt);
         }
-
-        class CsvObject
+        private class CsvObject
         {
             public string FirstName { get; private set; }
             public string LastName { get; private set; }
