@@ -37,8 +37,14 @@ namespace CsvReader
         }
         private void LoadData(string FileName)
         {
-            var csv_objects = GetUsers(FileName);            
-            Data.Dispatcher.Invoke(() => Data.ItemsSource = csv_objects);
+            var csv_objects = GetUsers(FileName);
+            //Data.Dispatcher.Invoke(() => Data.ItemsSource = csv_objects);
+            StringBuilder sb = new StringBuilder();
+            foreach (CsvObject csv_line in __CsvObjects)
+            {
+                sb.AppendLine(csv_line.ToTextBox('\t'));
+            }
+            DataFile.Dispatcher.Invoke(() => DataFile.Text = sb.ToString());
         }
 
         private static IEnumerable<CsvObject> GetUsers(string file_name)
@@ -53,8 +59,41 @@ namespace CsvReader
                     if (values.Length < 4)
                         continue;
                     string[] some_info = null;
-                    for (int i = 4; i < values.Length; i++)
-                        some_info[i - 4] = values[i];
+                    if (values.Length > 4)
+                    {
+                        some_info = new string[values.Length - 4];
+                        for (int i = 4; i < values.Length; i++)
+                            some_info[i - 4] = values[i];
+                    }                        
+                    __CsvObjects.Add(new CsvObject(
+                    values[0],
+                    values[1],
+                    values[2],
+                    values[3],
+                    some_info
+                    ));
+                }
+            }
+            return __CsvObjects;
+        }
+        private static IEnumerable<CsvObject> GetUsersWithInfo(string file_name)
+        {
+            __CsvObjects.Clear();
+            using (StreamReader sr = new StreamReader(file_name, System.Text.Encoding.UTF8))
+            {
+                string csv_line = "";
+                while ((csv_line = sr.ReadLine()) != null)
+                {
+                    string[] values = csv_line.Split(';');
+                    if (values.Length < 4)
+                        continue;
+                    string[] some_info = null;
+                    if (values.Length > 4)
+                    {
+                        some_info = new string[values.Length - 4];
+                        for (int i = 4; i < values.Length; i++)
+                            some_info[i - 4] = values[i];
+                    }
                     __CsvObjects.Add(new CsvObject(
                     values[0],
                     values[1],
@@ -107,12 +146,18 @@ namespace CsvReader
         private void  WriteCsvFile(string file_name, int count)
         {
             List<CsvObject> list = new List<CsvObject>();
-            string[] Emails = new string[] { "@yandex.ru", "@gmail.com", "@mail.ru", "outlook.com", "@yahoo.com", };
+            string[] Emails = new string[] { "@yandex.ru", "@gmail.com", "@mail.ru", "@outlook.com", "@yahoo.com"};
             Random rnd = new Random();
             WriteStatus("Генерация файла");
             for (int i = 0; i < count; i++)
             {
-                list.Add(new CsvObject("Фамилия_" + i, "Имя_" + i, "Отчество_" + i, i + Emails[rnd.Next(0, Emails.Length)], null));
+                int size = rnd.Next(0, 10);
+                string[] some_info = new string[size];
+                for(int k = 0; k < size; k++)
+                {
+                    some_info[k] = "Инфо_" + i + "_" + k;
+                }
+                list.Add(new CsvObject("Фамилия_" + i, "Имя_" + i, "Отчество_" + i, i + Emails[rnd.Next(0, Emails.Length)], some_info));
             }
             StringBuilder sb = new StringBuilder();
             foreach (CsvObject csv_line in list)
@@ -129,7 +174,7 @@ namespace CsvReader
 
         private void WriteStatus(string status_srt)
         {
-            Data.Dispatcher.Invoke(() => tb_status.Text = status_srt);
+            tb_status.Dispatcher.Invoke(() => tb_status.Text = status_srt);
         }
 
         class CsvObject
@@ -153,6 +198,30 @@ namespace CsvReader
             {
                 if (delimiter != ';' && delimiter != ',')
                     delimiter = ';';
+                string str_some_info = "";
+                if (SomeInfo != null)
+                {
+                    for (int i = 0; i < SomeInfo.Length - 1; i++)
+                        str_some_info += SomeInfo[i] + delimiter;
+                    if (SomeInfo.Length > 0)
+                        str_some_info += SomeInfo[SomeInfo.Length - 1];
+
+                    return $"{FirstName}{delimiter}" +
+                        $"{LastName}{delimiter}" +
+                        $"{Patronymic}{delimiter}" +
+                        $"{Email}{delimiter}" +
+                        $"{str_some_info}";
+                }
+                else
+                    return $"{FirstName}{delimiter}" +
+                       $"{LastName}{delimiter}" +
+                       $"{Patronymic}{delimiter}" +
+                       $"{Email}";
+            }
+            public string ToTextBox(char delimiter)
+            {
+                if (delimiter != ';' && delimiter != ',' && delimiter != ' ' && delimiter != '|' && delimiter != '\t')
+                    delimiter = '\t';
                 string str_some_info = "";
                 if (SomeInfo != null)
                 {

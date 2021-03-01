@@ -18,7 +18,8 @@
         <TextBlock Name="tb_status" DockPanel.Dock="Bottom" TextAlignment="Left">
             Ок!
         </TextBlock>
-        <DataGrid Name="Data"/>
+        <!--<DataGrid Name="Data"/>-->
+        <TextBox Name="DataFile" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible"></TextBox>
         
     </DockPanel>
 </Window>
