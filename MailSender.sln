@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CsvReader", "CsvReader\CsvR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson_6_TPL", "Lesson_6_TPL\Lesson_6_TPL.csproj", "{ABBD20A8-BA2F-4FAC-AFCC-71F37D92E497}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lesson_6_Async", "Lesson_6_Async\Lesson_6_Async.csproj", "{BDC85A1F-0925-45F7-9B88-1D4E820EC709}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{ABBD20A8-BA2F-4FAC-AFCC-71F37D92E497}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABBD20A8-BA2F-4FAC-AFCC-71F37D92E497}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABBD20A8-BA2F-4FAC-AFCC-71F37D92E497}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDC85A1F-0925-45F7-9B88-1D4E820EC709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC85A1F-0925-45F7-9B88-1D4E820EC709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDC85A1F-0925-45F7-9B88-1D4E820EC709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDC85A1F-0925-45F7-9B88-1D4E820EC709}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
